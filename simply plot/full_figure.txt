@@ -1,0 +1,35 @@
+% Just testing whether the plotter works
+
+output testfigure.tex
+
+figuresize 80 70 mm
+
+% Setting plot area size and bottom-left corner position. If position is not specified will be placed in the centre
+plotarea 65 55 mm bl 10 10 mm
+% As an alternative to defining plot area defining margins is possible
+% margins 10 10 10 10 mm
+
+% Plotting the limiting box
+{
+linewidth 0.5
+linecolour gray 0.8
+plotbox
+}
+
+{
+xlimits -15 10
+ylimits -0.4 1.2
+linewidth 1
+linecolour rgb 255 117 24
+% Going to plot data from testdata.txt. The second column against the first
+loaddata testdata.txt
+plotdata 1 2
+}
+
+{
+linewidth 0.5
+% plot x axis at 0 of y axis in the range from -12 to 8
+plotxaxis at 0 from -12 to 8
+plotxticks -12 -10 -8 -6 -4 -2 0 2 4 6 8 bigend
+textxticks -12 -8 -4 0 4 8 at -12 -8 -4 0 4 8
+}

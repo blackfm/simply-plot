@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A7B7BF241CBC2A570013D831 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B7BF231CBC2A570013D831 /* main.cpp */; };
+		A708F3731CCE8529008A48BD /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A708F3711CCE8529008A48BD /* plot.cpp */; };
+		A7B7BF241CBC2A570013D831 /* simplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B7BF231CBC2A570013D831 /* simplot.cpp */; };
+		A7BC3F531CC39D1C00CE451C /* dataset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F511CC39D1C00CE451C /* dataset.cpp */; };
+		A7BC3F561CC6527600CE451C /* plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F541CC6527600CE451C /* plotter.cpp */; };
+		A7BC3F5A1CCA6D5700CE451C /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F581CCA6D5700CE451C /* parser.cpp */; };
+		A7BC3F5D1CCA770400CE451C /* dimensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F5B1CCA770400CE451C /* dimensions.cpp */; };
+		A7F41AC81CC121BE00B161D1 /* libticppd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F41AC21CC121BE00B161D1 /* libticppd.a */; };
+		A7F41ACF1CC2702B00B161D1 /* figure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41ACD1CC2702B00B161D1 /* figure.cpp */; };
+		A7F41AD21CC2730000B161D1 /* coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41AD01CC2730000B161D1 /* coordinate.cpp */; };
+		A7F41AD51CC276E400B161D1 /* coordsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41AD31CC276E400B161D1 /* coordsystem.cpp */; };
+		A7F41AD81CC2989A00B161D1 /* graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41AD61CC2989A00B161D1 /* graph.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +33,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A708F3711CCE8529008A48BD /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = plot/plot.cpp; sourceTree = "<group>"; };
+		A708F3721CCE8529008A48BD /* plot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = plot.hpp; path = plot/plot.hpp; sourceTree = "<group>"; };
 		A7B7BF201CBC2A570013D831 /* simply plot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simply plot"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7B7BF231CBC2A570013D831 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A7B7BF231CBC2A570013D831 /* simplot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simplot.cpp; sourceTree = "<group>"; };
+		A7BC3F511CC39D1C00CE451C /* dataset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dataset.cpp; path = plot/dataset.cpp; sourceTree = "<group>"; };
+		A7BC3F521CC39D1C00CE451C /* dataset.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = dataset.hpp; path = plot/dataset.hpp; sourceTree = "<group>"; };
+		A7BC3F541CC6527600CE451C /* plotter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plotter.cpp; sourceTree = "<group>"; };
+		A7BC3F551CC6527600CE451C /* plotter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = plotter.hpp; sourceTree = "<group>"; };
+		A7BC3F581CCA6D5700CE451C /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
+		A7BC3F591CCA6D5700CE451C /* parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parser.hpp; sourceTree = "<group>"; };
+		A7BC3F5B1CCA770400CE451C /* dimensions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dimensions.cpp; path = plot/dimensions.cpp; sourceTree = "<group>"; };
+		A7BC3F5C1CCA770400CE451C /* dimensions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = dimensions.hpp; path = plot/dimensions.hpp; sourceTree = "<group>"; };
+		A7F41AC21CC121BE00B161D1 /* libticppd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libticppd.a; path = "simply plot/ticpp/libticppd.a"; sourceTree = "<group>"; };
+		A7F41AC31CC121BE00B161D1 /* ticpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ticpp.h; path = "simply plot/ticpp/ticpp.h"; sourceTree = "<group>"; };
+		A7F41AC41CC121BE00B161D1 /* ticppapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ticppapi.h; path = "simply plot/ticpp/ticppapi.h"; sourceTree = "<group>"; };
+		A7F41AC51CC121BE00B161D1 /* ticpprc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ticpprc.h; path = "simply plot/ticpp/ticpprc.h"; sourceTree = "<group>"; };
+		A7F41AC61CC121BE00B161D1 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinystr.h; path = "simply plot/ticpp/tinystr.h"; sourceTree = "<group>"; };
+		A7F41AC71CC121BE00B161D1 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tinyxml.h; path = "simply plot/ticpp/tinyxml.h"; sourceTree = "<group>"; };
+		A7F41ACD1CC2702B00B161D1 /* figure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = figure.cpp; path = plot/figure.cpp; sourceTree = "<group>"; };
+		A7F41ACE1CC2702B00B161D1 /* figure.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = figure.hpp; path = plot/figure.hpp; sourceTree = "<group>"; };
+		A7F41AD01CC2730000B161D1 /* coordinate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = coordinate.cpp; path = plot/coordinate.cpp; sourceTree = "<group>"; };
+		A7F41AD11CC2730000B161D1 /* coordinate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = coordinate.hpp; path = plot/coordinate.hpp; sourceTree = "<group>"; };
+		A7F41AD31CC276E400B161D1 /* coordsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = coordsystem.cpp; path = plot/coordsystem.cpp; sourceTree = "<group>"; };
+		A7F41AD41CC276E400B161D1 /* coordsystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = coordsystem.hpp; path = plot/coordsystem.hpp; sourceTree = "<group>"; };
+		A7F41AD61CC2989A00B161D1 /* graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = graph.cpp; path = plot/graph.cpp; sourceTree = "<group>"; };
+		A7F41AD71CC2989A00B161D1 /* graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = graph.hpp; path = plot/graph.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F41AC81CC121BE00B161D1 /* libticppd.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +76,7 @@
 		A7B7BF171CBC2A570013D831 = {
 			isa = PBXGroup;
 			children = (
+				A7F41AC91CC121F000B161D1 /* ticpp */,
 				A7B7BF221CBC2A570013D831 /* simply plot */,
 				A7B7BF211CBC2A570013D831 /* Products */,
 			);
@@ -57,9 +93,48 @@
 		A7B7BF221CBC2A570013D831 /* simply plot */ = {
 			isa = PBXGroup;
 			children = (
-				A7B7BF231CBC2A570013D831 /* main.cpp */,
+				A7BC3F571CCA68DF00CE451C /* plot components */,
+				A7B7BF231CBC2A570013D831 /* simplot.cpp */,
+				A7BC3F581CCA6D5700CE451C /* parser.cpp */,
+				A7BC3F591CCA6D5700CE451C /* parser.hpp */,
+				A7BC3F541CC6527600CE451C /* plotter.cpp */,
+				A7BC3F551CC6527600CE451C /* plotter.hpp */,
 			);
 			path = "simply plot";
+			sourceTree = "<group>";
+		};
+		A7BC3F571CCA68DF00CE451C /* plot components */ = {
+			isa = PBXGroup;
+			children = (
+				A7F41AD01CC2730000B161D1 /* coordinate.cpp */,
+				A7F41AD11CC2730000B161D1 /* coordinate.hpp */,
+				A7F41AD31CC276E400B161D1 /* coordsystem.cpp */,
+				A7F41AD41CC276E400B161D1 /* coordsystem.hpp */,
+				A7BC3F511CC39D1C00CE451C /* dataset.cpp */,
+				A7BC3F521CC39D1C00CE451C /* dataset.hpp */,
+				A7BC3F5B1CCA770400CE451C /* dimensions.cpp */,
+				A7BC3F5C1CCA770400CE451C /* dimensions.hpp */,
+				A7F41ACD1CC2702B00B161D1 /* figure.cpp */,
+				A7F41ACE1CC2702B00B161D1 /* figure.hpp */,
+				A7F41AD61CC2989A00B161D1 /* graph.cpp */,
+				A7F41AD71CC2989A00B161D1 /* graph.hpp */,
+				A708F3711CCE8529008A48BD /* plot.cpp */,
+				A708F3721CCE8529008A48BD /* plot.hpp */,
+			);
+			name = "plot components";
+			sourceTree = "<group>";
+		};
+		A7F41AC91CC121F000B161D1 /* ticpp */ = {
+			isa = PBXGroup;
+			children = (
+				A7F41AC21CC121BE00B161D1 /* libticppd.a */,
+				A7F41AC31CC121BE00B161D1 /* ticpp.h */,
+				A7F41AC41CC121BE00B161D1 /* ticppapi.h */,
+				A7F41AC51CC121BE00B161D1 /* ticpprc.h */,
+				A7F41AC61CC121BE00B161D1 /* tinystr.h */,
+				A7F41AC71CC121BE00B161D1 /* tinyxml.h */,
+			);
+			name = ticpp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +193,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7B7BF241CBC2A570013D831 /* main.cpp in Sources */,
+				A7F41AD81CC2989A00B161D1 /* graph.cpp in Sources */,
+				A7F41ACF1CC2702B00B161D1 /* figure.cpp in Sources */,
+				A7BC3F5D1CCA770400CE451C /* dimensions.cpp in Sources */,
+				A7F41AD51CC276E400B161D1 /* coordsystem.cpp in Sources */,
+				A7BC3F5A1CCA6D5700CE451C /* parser.cpp in Sources */,
+				A7B7BF241CBC2A570013D831 /* simplot.cpp in Sources */,
+				A7BC3F531CC39D1C00CE451C /* dataset.cpp in Sources */,
+				A7BC3F561CC6527600CE451C /* plotter.cpp in Sources */,
+				A708F3731CCE8529008A48BD /* plot.cpp in Sources */,
+				A7F41AD21CC2730000B161D1 /* coordinate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +293,14 @@
 		A7B7BF281CBC2A570013D831 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.60.0_2/include,
+					/plot,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -216,6 +308,14 @@
 		A7B7BF291CBC2A570013D831 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.60.0_2/include,
+					/plot,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -239,6 +339,7 @@
 				A7B7BF291CBC2A570013D831 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

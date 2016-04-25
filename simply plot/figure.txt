@@ -1,0 +1,4 @@
+% Just testing whether the plotter works
+figuresize 80.5 70 mm
+loaddata testdata.txt
+plotxy 1 2
