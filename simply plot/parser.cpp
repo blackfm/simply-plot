@@ -10,10 +10,14 @@
 
 namespace simplot {
   // Command names
-  const std::string Parser::CommandPlotSize = "plotsize";
-  const std::string Parser::CommandFigureSize = "figuresize";
-  const std::string Parser::CommandLoadData = "loaddata";
-  const std::string Parser::CommandPlotXY = "plotxy";
+  const std::string Parser::CMD_PLOT_SIZE   = "plotsize";
+  const std::string Parser::CMD_FIGURE_SIZE = "figuresize";
+  const std::string Parser::CMD_LOAD_DATA   = "loaddata";
+  const std::string Parser::CMD_PLOT_XY     = "plotxy";
+  const std::string Parser::CMD_XTICK       = "xtick";
+  const std::string Parser::CMD_YTICK       = "ytick";
+  const std::string Parser::CMD_XTICK_LABEL = "xticklabel";
+  const std::string Parser::CMD_YTICK_LABEL = "yticklabel";
   
   int Parser::plotFromFile(Plot& plot, std::string filename) {
     std::ifstream instructions(filename);
@@ -33,6 +37,11 @@ namespace simplot {
       if (processCommand(plot, command)) {
         ;
       }
+      else {
+        ;
+      }
+      
+      // Setting sizes and positions of all the elements
     }
     return 1;
   }
@@ -41,17 +50,41 @@ namespace simplot {
       return 1;
     else if (command[0][0] == '%') // comment, skip
       return 1;
-    else if (command[0] == CommandFigureSize) { // setting figure size
+    else if (command[0] == CMD_PLOT_SIZE) { // setting figure size
       std::vector<std::string> options(command.begin() + 1, command.end());
       return setPlotDimensions(plot, options);
     }
-    else if (command[0] == CommandLoadData) { // creating a dataset and adding it to current coordinate system
+    else if (command[0] == CMD_LOAD_DATA) { // creating a dataset and adding it to current coordinate system
       std::vector<std::string> options(command.begin() + 1, command.end());
-      loadDataSet(plot, options);
+      return loadDataSet(plot, options);
     }
-    else if (command[0] == CommandPlotXY) { // adding a plot to the current coordinate system
+    else if (command[0] == CMD_PLOT_XY) { // adding a plot to the current coordinate system
       std::vector<std::string> options(command.begin() + 1, command.end());
-      plotxy(plot, options);
+      return plotxy(plot, options);
+    }
+    else if (command[0] == CMD_XTICK) { // setting positions of x-axis ticks
+      std::vector<std::string> options(command.begin() + 1, command.end());
+      std::vector<float> values;
+      for (auto value : options) {
+        values.push_back(std::stof(value));
+      }
+      return setXticksValues(plot, values);
+    }
+    else if (command[0] == CMD_YTICK) { // setting positions of y-axis ticks
+      std::vector<std::string> options(command.begin() + 1, command.end());
+      std::vector<float> values;
+      for (auto value : options) {
+        values.push_back(std::stof(value));
+      }
+      return setYticksValues(plot, values);
+    }
+    else if (command[0] == CMD_XTICK_LABEL) { // setting labels for x-axis ticks
+      std::vector<std::string> labels(command.begin() + 1, command.end());
+      return setXticksLabels(plot, labels);
+    }
+    else if (command[0] == CMD_YTICK_LABEL) { // setting labels for y-axis ticks
+      std::vector<std::string> labels(command.begin() + 1, command.end());
+      return setYticksLabels(plot, labels);
     }
     return 0; // unknown command
   }
@@ -92,6 +125,23 @@ namespace simplot {
     int colY = std::stod(options[1]);
     std::vector<std::string> newOptions(options.begin() + 2, options.end());
     plot.plotxy(colX, colY, newOptions);
+    return 1;
+  }
+  
+  int Parser::setXticksValues(Plot& plot, const std::vector<float>& values) { // set values where x-axis ticks are placed
+    plot.setXticksValues(values);
+    return 1;
+  }
+  int Parser::setYticksValues(Plot& plot, const std::vector<float>& values) { // set values where y-axis ticks are placed
+    plot.setYticksValues(values);
+    return 1;
+  }
+  int Parser::setXticksLabels(Plot& plot, const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    plot.setXticksLabels(labels);
+    return 1;
+  }
+  int Parser::setYticksLabels(Plot& plot, const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    plot.setYticksLabels(labels);
     return 1;
   }
 }

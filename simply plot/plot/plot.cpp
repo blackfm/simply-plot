@@ -10,11 +10,20 @@
 
 namespace simplot {
   
-  Plot::Plot() {
+  Plot::Plot(Settings& settings) : settings(settings) {
     dimensions.setHeight(0);
     dimensions.setWidth(0);
     unit = "mm";
+    dimensions.setUnit(unit);
   }
+  
+  Plot::~Plot() {
+    // Remove all elements of instructions array
+    for (auto instruction : instructions) {
+      delete instruction;
+    }
+  }
+  
   
   int Plot::setUnit(std::string u) {
     // ADD check for unit validity
@@ -30,6 +39,7 @@ namespace simplot {
      */
     
     unit = u;
+    dimensions.setUnit(unit);
     return 1;
   }
   
@@ -58,8 +68,11 @@ namespace simplot {
     // Checking whether there are figures in plot, creating one if there are none
     if (figures.empty()) {
       Figure newFigure;
-      newFigure.setWidth(this->getWidth()); // setting size equal to the one of the plot
-      newFigure.setHeight(this->getHeight());
+      float plotMargin = settings.getNumber(Settings::KEY_PLOT + "." + Settings::KEY_MARGIN);
+      newFigure.setWidth(this->getWidth() - 2*plotMargin); // setting size equal to the one of the plot - margins
+      newFigure.setHeight(this->getHeight() - 2*plotMargin);
+      newFigure.setOrigin(Coordinate(plotMargin, plotMargin));
+      
       figures.push_back(newFigure);
     }
     // Checking whether there are coordinate systems, creating one if there are none
@@ -79,10 +92,10 @@ namespace simplot {
   
   // Getting physical positions of points of a graph with respect to the bottom-left of the plot
   std::vector<Coordinate> Plot::getGraphPhysicalPositions(int nGraph) const {
-    std::vector<Coordinate> values = graphs[nGraph-1].getValues();
+    std::vector<Coordinate> values = graphs[nGraph].getValues();
     double numberOfValues = values.size();
     
-    unsigned long nSystem = parentsGraphs[nGraph-1];
+    unsigned long nSystem = parentsGraphs[nGraph];
     const CoordSystem& system = coordSystems[nSystem];
     unsigned long nFigure = parentsCoordSystems[nSystem];
     const Figure& figure = figures[nFigure];
@@ -97,4 +110,70 @@ namespace simplot {
     }
     return result;
   }
+  
+  // Axes ticks settings
+  int Plot::setXticksValues(const std::vector<float>& values) { // set values where x-axis ticks are placed
+    CoordSystem& lastSystem = coordSystems.back();
+    return lastSystem.setXticksValues(values);
+  }
+  int Plot::setYticksValues(const std::vector<float>& values) { // set values where y-axis ticks are placed
+    CoordSystem& lastSystem = coordSystems.back();
+    return lastSystem.setYticksValues(values);
+  }
+  int Plot::setXticksLabels(const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    CoordSystem& lastSystem = coordSystems.back();
+    return lastSystem.setXticksLabels(labels);
+  }
+  int Plot::setYticksLabels(const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    CoordSystem& lastSystem = coordSystems.back();
+    return lastSystem.setYticksLabels(labels);
+  }
+  
+  std::vector<Instruction*> Plot::getInstructions() const {
+    std::vector<Instruction*> instructions;
+    // plotting graphs (lines, markers)
+    for (int nGraph = 0; nGraph < graphs.size(); ++ nGraph) {
+      Path path(getGraphPhysicalPositions(nGraph));
+    }
+    // plotting coordinate systems (axes, ticks, labels)
+    return instructions;
+  }
+  
+  int Plot::render(Plotter& plotter) { // rendering the plot using the given plotter
+    if (instructions.size() == 0) {
+      // create instructions
+      generateInstructions();
+    }
+    for (auto instruction : instructions) {
+      instruction->render(plotter);
+    }
+    plotter.finish(); // finalising the plot and saving it into the file
+    return 1;
+  }
+  
+  int Plot::generateInstructions() { // generate the instructions set
+    // Plot properties
+    SetSize * newInstruction = new SetSize(dimensions);
+    instructions.push_back(newInstruction);
+    // Instructions for graphs
+    for (int nGraph = 0; nGraph < numberOfGraphs(); ++nGraph) { // going through each graph
+      Path * newInstruction = new Path(getGraphPhysicalPositions(nGraph));
+      instructions.push_back(newInstruction);
+    }
+    // TODO Instructions for axes (lines, ticks, labels)
+    
+    return 1;
+  }
+  
+  std::string tostr(const float value, const int precision) { // converting a float to a string with given precision
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(precision) << value;
+    return out.str();
+  }
+  
+  std::string tostr(const int value, const int precision) { // converting an integer
+    return std::to_string(value);
+  }
+
+
 }

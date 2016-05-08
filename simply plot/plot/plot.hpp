@@ -17,18 +17,24 @@
 #include <fstream>   // to build the plot from a file
 #include <sstream>   // to parse the instructions file
 #include <algorithm> // to use 'transform' with 'tolower'
+#include <iomanip>   // for to string conversion with precision
+
 #include "figure.hpp"
 #include "dataset.hpp"
 #include "coordsystem.hpp"
 #include "graph.hpp"
 #include "dimensions.hpp"
+#include "settings.hpp"
+#include "instruction.hpp"
+#include "plotter.hpp"
 
 namespace simplot {
-  
+  class Instruction;
+  class Plotter;
   class Plot {
   public:
-    Plot();
-    Plot(std::string filename);
+    Plot(Settings& settings);
+    ~Plot();
     int setWidth(float width) {return dimensions.setWidth(width);}
     int setHeight(float height) {return dimensions.setHeight(height);}
     int setUnit(std::string unit);
@@ -41,9 +47,24 @@ namespace simplot {
     int addFigure(Figure fig);
     int addDataSet(std::string filename, const std::vector<std::string>& options); // add a dataset and initialise it from file
     int plotxy(int colX, int colY, const std::vector<std::string>& options); // add (x,y) graph using columns colX, colY from the current dataset
+    int setXticksValues(const std::vector<float>& values); // set values where x-axis ticks are placed
+    int setYticksValues(const std::vector<float>& values); // set values where y-axis ticks are placed
+    int setXticksLabels(const std::vector<std::string>& labels); // set labels to be put at x ticks
+    int setYticksLabels(const std::vector<std::string>& labels); // set labels to be put at Y ticks
+    
+    
+    // Getting various numbers
+    unsigned long int numberOfFigures() const {return figures.size();}
+    unsigned long int numberOfCoordSystems() const {return coordSystems.size();}
+    unsigned long int numberOfGraphs() const {return graphs.size();}
     
     // Getting physical positions of points of a graph with respect to the bottom-left of the plot
     std::vector<Coordinate> getGraphPhysicalPositions(int nGraph) const;
+    
+    // Getting the instructions for plotting every element of the plot
+    std::vector<Instruction*> getInstructions() const;
+    
+    int render(Plotter& plotter); // rendering the plot using the given plotter
     
   private:
     Dimensions dimensions;
@@ -60,13 +81,13 @@ namespace simplot {
     CoordSystem * getCoordinateSystem(); // get a pointer to most recently created coordinate system
     int addGraph(Graph graph); // add a graph to the vector
     
-    /*
-    // Script processing commands
-    int processCommand(const std::vector<std::string>& tokens); // making changes according to the command
-    int setPlotSize(const std::vector<std::string>& tokens); // setting figure size using an instruction line
-    int loadDataSet(const std::vector<std::string>& tokens); // loading a dataset and adding it to the system
-    int plotxy(const std::vector<std::string>& tokens); // creates a plot to be put within coordinate system
-    */
+    Settings& settings;
+    
+    std::vector<Instruction*> instructions; // stores instructions for the plotter
+    int generateInstructions(); // generate the instructions set
   };
+  
+  std::string tostr(const float value, const int precision = 2);
+  std::string tostr(const int value, const int precision = 2);
 }
 #endif /* plot_hpp */

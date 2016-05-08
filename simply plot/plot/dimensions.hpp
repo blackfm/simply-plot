@@ -11,6 +11,7 @@
 #define dimensions_hpp
 
 #include <stdio.h>
+#include <string>
 
 namespace simplot {
   class Dimensions {
@@ -18,12 +19,16 @@ namespace simplot {
     Dimensions();
     float getWidth() const {return width;}
     float getHeight() const {return height;}
+    std::string getUnit() const {return unit;}
     int setWidth(float w);
     int setHeight(float h);
     int set(float w, float h);
+    int set(const Dimensions& dimensions);
+    int setUnit(const std::string& unit);
   private:
     float width;
     float height;
+    std::string unit;
   };
 }
 

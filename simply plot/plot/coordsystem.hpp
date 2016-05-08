@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <vector>
 #include <algorithm>
+#include <string>
 #include "graph.hpp"
 
 namespace simplot {
@@ -26,6 +27,12 @@ namespace simplot {
     int setHeight(float h);
     Coordinate toPhysicalPosition(const Coordinate& value) const; // convert from value to relative position on paper
     Coordinate getOriginPosition() const {return originPosition;}
+    
+    int setXticksValues(const std::vector<float>& values); // set values where x-axis ticks are placed
+    int setYticksValues(const std::vector<float>& values); // set values where y-axis ticks are placed
+    int setXticksLabels(const std::vector<std::string>& labels); // set labels to be put at x ticks
+    int setYticksLabels(const std::vector<std::string>& labels); // set labels to be put at x ticks
+    
   private:
     // Physical values
     Coordinate position; // with respect to the bottom-left corner of the figure
@@ -37,6 +44,19 @@ namespace simplot {
     Coordinate originValue; // value at the origin position (0, 0) by default
     float scaleX; // units of value per units of figure
     float scaleY; // units of value per units of figure
+    
+    // Values related to ticks
+    bool drawTicksX; // whether to draw ticks at all
+    bool drawTicksY;
+    std::vector<float> xTicksValues;
+    std::vector<float> yTicksValues;
+    std::vector<std::string> xTicksLabels;
+    std::vector<std::string> yTicksLabels;
+    bool longEndTicks; // make ticks at the axis ends longer
+    
+    // Values related to axes
+    std::string xAxisLabel;
+    std::string yAxisLabel;
   };
 }
 

@@ -24,6 +24,7 @@ namespace simplot {
     float getHeight() {return height;}
     int setWidth(float width);
     int setHeight(float height);
+    int setOrigin(Coordinate origin) {this->origin = origin; return 1;}
     Coordinate getOrigin() const {return origin;}
   private:
     Coordinate origin;  // all the coordinates are with respect to the bottom-left corner

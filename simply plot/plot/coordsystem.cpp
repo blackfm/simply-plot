@@ -10,10 +10,19 @@
 
 namespace simplot {
   CoordSystem::CoordSystem() {
-    originPosition = Coordinate(0, 0);
-    originValue = Coordinate(0, 0);
+    position = Coordinate(0, 0);
     width = 0;
     height = 0;
+    
+    originPosition = Coordinate(0, 0);
+    originValue = Coordinate(0, 0);
+    scaleX = 0;
+    scaleY = 0;
+    
+    drawTicksX = true;
+    drawTicksY = true;
+    longEndTicks = true;
+    
   }
   
   int CoordSystem::initFromGraph(const Graph& graph) { // initialising origin and scale from the graph
@@ -52,5 +61,22 @@ namespace simplot {
                       (value.getY() - originValue.getY())*scaleY); // to the origin
     result = result + originPosition; // position with respect to the bottom-left corner of the system
     return result;
+  }
+  
+  int CoordSystem::setXticksValues(const std::vector<float>& values) { // set values where x-axis ticks are placed
+    xTicksValues = values;
+    return 1;
+  }
+  int CoordSystem::setYticksValues(const std::vector<float>& values) { // set values where y-axis ticks are placed
+    yTicksValues = values;
+    return 1;
+  }
+  int CoordSystem::setXticksLabels(const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    xTicksLabels = labels;
+    return 1;
+  }
+  int CoordSystem::setYticksLabels(const std::vector<std::string>& labels) { // set labels to be put at x ticks
+    yTicksLabels = labels;
+    return 1;
   }
 }

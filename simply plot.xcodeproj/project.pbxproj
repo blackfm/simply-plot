@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		A708F3731CCE8529008A48BD /* plot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A708F3711CCE8529008A48BD /* plot.cpp */; };
+		A708F3781CCFAA0D008A48BD /* libticppd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F41AC21CC121BE00B161D1 /* libticppd.a */; };
+		A708F37A1CCFAA30008A48BD /* libboost_program_options.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A708F3791CCFAA30008A48BD /* libboost_program_options.a */; };
+		A708F3831CCFD355008A48BD /* settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A708F3811CCFD355008A48BD /* settings.cpp */; };
+		A7274DF11CDB3A1C0071E7F0 /* instruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7274DEF1CDB3A1C0071E7F0 /* instruction.cpp */; };
 		A7B7BF241CBC2A570013D831 /* simplot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B7BF231CBC2A570013D831 /* simplot.cpp */; };
 		A7BC3F531CC39D1C00CE451C /* dataset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F511CC39D1C00CE451C /* dataset.cpp */; };
 		A7BC3F561CC6527600CE451C /* plotter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F541CC6527600CE451C /* plotter.cpp */; };
 		A7BC3F5A1CCA6D5700CE451C /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F581CCA6D5700CE451C /* parser.cpp */; };
 		A7BC3F5D1CCA770400CE451C /* dimensions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BC3F5B1CCA770400CE451C /* dimensions.cpp */; };
-		A7F41AC81CC121BE00B161D1 /* libticppd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F41AC21CC121BE00B161D1 /* libticppd.a */; };
 		A7F41ACF1CC2702B00B161D1 /* figure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41ACD1CC2702B00B161D1 /* figure.cpp */; };
 		A7F41AD21CC2730000B161D1 /* coordinate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41AD01CC2730000B161D1 /* coordinate.cpp */; };
 		A7F41AD51CC276E400B161D1 /* coordsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7F41AD31CC276E400B161D1 /* coordsystem.cpp */; };
@@ -35,6 +38,11 @@
 /* Begin PBXFileReference section */
 		A708F3711CCE8529008A48BD /* plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = plot.cpp; path = plot/plot.cpp; sourceTree = "<group>"; };
 		A708F3721CCE8529008A48BD /* plot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = plot.hpp; path = plot/plot.hpp; sourceTree = "<group>"; };
+		A708F3791CCFAA30008A48BD /* libboost_program_options.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_program_options.a; path = ../../../../../usr/local/Cellar/boost/1.60.0_2/lib/libboost_program_options.a; sourceTree = "<group>"; };
+		A708F3811CCFD355008A48BD /* settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settings.cpp; sourceTree = "<group>"; };
+		A708F3821CCFD355008A48BD /* settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = settings.hpp; sourceTree = "<group>"; };
+		A7274DEF1CDB3A1C0071E7F0 /* instruction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instruction.cpp; path = plot/instruction.cpp; sourceTree = "<group>"; };
+		A7274DF01CDB3A1C0071E7F0 /* instruction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = instruction.hpp; path = plot/instruction.hpp; sourceTree = "<group>"; };
 		A7B7BF201CBC2A570013D831 /* simply plot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simply plot"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7B7BF231CBC2A570013D831 /* simplot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simplot.cpp; sourceTree = "<group>"; };
 		A7BC3F511CC39D1C00CE451C /* dataset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dataset.cpp; path = plot/dataset.cpp; sourceTree = "<group>"; };
@@ -66,7 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7F41AC81CC121BE00B161D1 /* libticppd.a in Frameworks */,
+				A708F37A1CCFAA30008A48BD /* libboost_program_options.a in Frameworks */,
+				A708F3781CCFAA0D008A48BD /* libticppd.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +85,7 @@
 		A7B7BF171CBC2A570013D831 = {
 			isa = PBXGroup;
 			children = (
+				A708F3791CCFAA30008A48BD /* libboost_program_options.a */,
 				A7F41AC91CC121F000B161D1 /* ticpp */,
 				A7B7BF221CBC2A570013D831 /* simply plot */,
 				A7B7BF211CBC2A570013D831 /* Products */,
@@ -99,6 +109,8 @@
 				A7BC3F591CCA6D5700CE451C /* parser.hpp */,
 				A7BC3F541CC6527600CE451C /* plotter.cpp */,
 				A7BC3F551CC6527600CE451C /* plotter.hpp */,
+				A708F3811CCFD355008A48BD /* settings.cpp */,
+				A708F3821CCFD355008A48BD /* settings.hpp */,
 			);
 			path = "simply plot";
 			sourceTree = "<group>";
@@ -120,6 +132,8 @@
 				A7F41AD71CC2989A00B161D1 /* graph.hpp */,
 				A708F3711CCE8529008A48BD /* plot.cpp */,
 				A708F3721CCE8529008A48BD /* plot.hpp */,
+				A7274DEF1CDB3A1C0071E7F0 /* instruction.cpp */,
+				A7274DF01CDB3A1C0071E7F0 /* instruction.hpp */,
 			);
 			name = "plot components";
 			sourceTree = "<group>";
@@ -198,6 +212,8 @@
 				A7BC3F5D1CCA770400CE451C /* dimensions.cpp in Sources */,
 				A7F41AD51CC276E400B161D1 /* coordsystem.cpp in Sources */,
 				A7BC3F5A1CCA6D5700CE451C /* parser.cpp in Sources */,
+				A708F3831CCFD355008A48BD /* settings.cpp in Sources */,
+				A7274DF11CDB3A1C0071E7F0 /* instruction.cpp in Sources */,
 				A7B7BF241CBC2A570013D831 /* simplot.cpp in Sources */,
 				A7BC3F531CC39D1C00CE451C /* dataset.cpp in Sources */,
 				A7BC3F561CC6527600CE451C /* plotter.cpp in Sources */,
@@ -296,9 +312,11 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/boost/1.60.0_2/include,
 					/plot,
+					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					/usr/local/Cellar/boost/1.60.0_2/lib,
 					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -311,9 +329,11 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/boost/1.60.0_2/include,
 					/plot,
+					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					/usr/local/Cellar/boost/1.60.0_2/lib,
 					"$(PROJECT_DIR)/\"simply plot\"/ticpp",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

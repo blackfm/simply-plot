@@ -10,8 +10,9 @@
 
 namespace simplot {
   Dimensions::Dimensions() {
-    width = 0;
+    width  = 0;
     height = 0;
+    unit   = std::string("mm");
   }
   
   int Dimensions::setWidth(float w) {
@@ -43,5 +44,16 @@ namespace simplot {
     else {
       return 1;
     }
+  }
+  
+  int Dimensions::set(const simplot::Dimensions& dimensions) {
+    width  = dimensions.getWidth();
+    height = dimensions.getHeight();
+    return 1;
+  }
+  
+  int Dimensions::setUnit(const std::string& unit) {
+    this->unit = unit;
+    return 1;
   }
 }
