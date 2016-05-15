@@ -41,6 +41,8 @@ namespace simplot {
     static const std::string KEY_MARGIN;
     static const std::string KEY_FONTSIZE;
     static const std::string KEY_LINEWIDTH;
+    static const std::string KEY_TICKLENGTH;
+    static const std::string KEY_LONGTICKLENGTH;
     
   private:
     po::variables_map vm; // Map storing key:value pairs

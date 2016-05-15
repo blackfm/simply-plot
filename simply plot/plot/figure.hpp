@@ -15,21 +15,26 @@
 #include <vector>
 #include "coordinate.hpp"
 #include "dataset.hpp"
+#include "plot.hpp"
+#include "dimensions.hpp"
 
 namespace simplot {
+  class Plot;
   class Figure {
   public:
-    Figure();
-    float getWidth() {return width;}
-    float getHeight() {return height;}
+    Figure(const Plot& parentPlot);
+    float getWidth() const {return dimensions.getWidth();}
+    float getHeight() const {return dimensions.getHeight();}
+    Dimensions getDimensions() const {return dimensions;}
     int setWidth(float width);
     int setHeight(float height);
     int setOrigin(Coordinate origin) {this->origin = origin; return 1;}
     Coordinate getOrigin() const {return origin;}
   private:
+    const Plot& parentPlot;
+    
     Coordinate origin;  // all the coordinates are with respect to the bottom-left corner
-    float height;
-    float width;
+    Dimensions dimensions;
   };
 }
 

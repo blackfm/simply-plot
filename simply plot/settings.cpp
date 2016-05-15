@@ -15,16 +15,22 @@ namespace simplot {
     // Settings names with types, to be put in a separate file
     typedef float t_margin;
     typedef float t_fontsize;
+    typedef float t_linewidth;
+    typedef float t_distance; // width, height, etc
     
     desc.add_options()
     ((KEY_GENERAL + "." + KEY_FONTSIZE).c_str(), po::value<t_fontsize>(),
      "Default font size for all the plot elements")
     ((KEY_PLOT + "." + KEY_MARGIN).c_str(), po::value<t_margin>(),
      "Blank space reserved around the plot borders")
-    ((KEY_GRAPH + "." + KEY_LINEWIDTH).c_str(), po::value<t_fontsize>(),
+    ((KEY_GRAPH + "." + KEY_LINEWIDTH).c_str(), po::value<t_linewidth>(),
      "Default linewidth for graphs")
-    ((KEY_AXIS + "." + KEY_LINEWIDTH).c_str(), po::value<t_fontsize>(),
+    ((KEY_AXIS + "." + KEY_LINEWIDTH).c_str(), po::value<t_linewidth>(),
      "Default linewidth for axes")
+    ((KEY_AXIS + "." + KEY_TICKLENGTH).c_str(), po::value<t_distance>(),
+     "Default length of axis ticks")
+    ((KEY_AXIS + "." + KEY_LONGTICKLENGTH).c_str(), po::value<t_distance>(),
+     "Default length of axis ticks at the edges")
     ;
     // Load setting file.
     std::ifstream fileSettings(filename, std::ifstream::in);
@@ -54,5 +60,7 @@ namespace simplot {
   const std::string Settings::KEY_MARGIN = "margin";
   const std::string Settings::KEY_FONTSIZE = "fontsize";
   const std::string Settings::KEY_LINEWIDTH = "linewidth";
+  const std::string Settings::KEY_TICKLENGTH = "ticklength";
+  const std::string Settings::KEY_LONGTICKLENGTH = "longticklength";
   
 }

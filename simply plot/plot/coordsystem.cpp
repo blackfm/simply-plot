@@ -9,15 +9,17 @@
 #include "coordsystem.hpp"
 
 namespace simplot {
-  CoordSystem::CoordSystem() {
-    position = Coordinate(0, 0);
-    width = 0;
-    height = 0;
+  CoordSystem::CoordSystem(const Figure& parentFigure) : parentFigure(parentFigure) {
+    position = Coordinate(0, parentFigure.getHeight()); // Setting the position of origin at the bottom-left corner of the figure
+    dimensions = parentFigure.getDimensions();
     
-    originPosition = Coordinate(0, 0);
+    originPosition = Coordinate(0, parentFigure.getHeight());
     originValue = Coordinate(0, 0);
     scaleX = 0;
     scaleY = 0;
+    
+    drawAxisX = true;
+    drawAxisY = true;
     
     drawTicksX = true;
     drawTicksY = true;
@@ -28,38 +30,36 @@ namespace simplot {
   int CoordSystem::initFromGraph(const Graph& graph) { // initialising origin and scale from the graph
     originValue = Coordinate(graph.getminX(), graph.getminY());
     if (graph.getmaxX() != graph.getminX()) {
-      scaleX = width/(graph.getmaxX() - graph.getminX());
+      scaleX = getWidth()/(graph.getmaxX() - graph.getminX());
     }
     if (graph.getmaxY() != graph.getminY()) {
-      scaleY = height/(graph.getmaxY() - graph.getminY());
+      scaleY = -(getHeight()/(graph.getmaxY() - graph.getminY())); // negative, since the "natural" y axis points down
     }
     return 1;
   }
   
   int CoordSystem::setWidth(float w) {
-    if (w <= 0) {
-      width = 0;
-      return 0;
-    }
-    width = w;
-    return 1;
+    return dimensions.setWidth(w);
   }
   
   int CoordSystem::setHeight(float h) {
-    if (h <= 0) {
-      height = 0;
-      return 0;
-    }
-    height = h;
-    return 1;
+    return dimensions.setHeight(h);
   }
   
   Coordinate CoordSystem::toPhysicalPosition(const Coordinate& value) const {
-    // Converting a value to the physical position relative to the bottom left
+    // Converting a value to the physical position relative to the top left
     // corner of the coordinate system
     Coordinate result((value.getX() - originValue.getX())*scaleX,  // physical position with respect
                       (value.getY() - originValue.getY())*scaleY); // to the origin
-    result = result + originPosition; // position with respect to the bottom-left corner of the system
+    result += originPosition + parentFigure.getOrigin(); // shifting to get the absolute position
+    return result;
+  }
+  
+  std::vector<Coordinate> CoordSystem::toPhysicalPosition(const std::vector<Coordinate>& values) const { // convert an array of values to absolute positions on paper
+    std::vector<Coordinate> result;
+    for (auto value : values) {
+      result.push_back(toPhysicalPosition(value));
+    }
     return result;
   }
   

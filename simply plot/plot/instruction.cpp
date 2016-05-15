@@ -10,12 +10,24 @@
 namespace simplot {
   Instruction::~Instruction() {;}
   
+  Path::Path() {
+    std::vector<Coordinate> subpath;
+    points.push_back(subpath);
+  }
+  
   Path::Path(std::vector<Coordinate> points) {
     this->points.push_back(points);
   }
+  
   Path::~Path() {
     
   }
+  
+  int Path::addPoint(Coordinate value) {
+    points.back().push_back(value);
+    return 1;
+  }
+  
   int Path::render(Plotter& plotter) {
     plotter.runInstruction(*this);
     return 1;

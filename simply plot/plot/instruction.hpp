@@ -32,8 +32,10 @@ namespace simplot {
   
   class Path : public Instruction { // path is a set of sections to be plot
   public:
+    Path();
     ~Path();
     Path(std::vector<Coordinate> points); // initialising the Path with a given set of points
+    int addPoint(Coordinate value);
     std::vector<std::vector<Coordinate>> getPoints() const {return points;}
     int render(Plotter& plotter);
   private:

@@ -36,6 +36,8 @@ namespace simplot{
     }
     
     ticpp::Element* svgPath = new ticpp::Element("path");
+    
+    // Setting the style
     svgPath->SetAttribute("fill", "none");
     svgPath->SetAttribute("stroke", "black");
     svgPath->SetAttribute("stroke-width", "0.5");
@@ -53,8 +55,8 @@ namespace simplot{
     return 1;
   }
   
-  int Plotter::finish() { // finalising the plot and saving it into the file
-    svgPlot.SaveFile("test_figure.svg");
+  int Plotter::saveFile(const std::string& filename) { // finalising the plot and saving it into the file
+    svgPlot.SaveFile(filename);
     return 1;
   }
   

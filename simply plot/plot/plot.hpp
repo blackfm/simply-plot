@@ -31,6 +31,9 @@
 namespace simplot {
   class Instruction;
   class Plotter;
+  class Figure;
+  class CoordSystem;
+  class Graph;
   class Plot {
   public:
     Plot(Settings& settings);
@@ -58,11 +61,8 @@ namespace simplot {
     unsigned long int numberOfCoordSystems() const {return coordSystems.size();}
     unsigned long int numberOfGraphs() const {return graphs.size();}
     
-    // Getting physical positions of points of a graph with respect to the bottom-left of the plot
+    // Getting physical positions of points of a graph with respect to the top-left of the plot
     std::vector<Coordinate> getGraphPhysicalPositions(int nGraph) const;
-    
-    // Getting the instructions for plotting every element of the plot
-    std::vector<Instruction*> getInstructions() const;
     
     int render(Plotter& plotter); // rendering the plot using the given plotter
     
@@ -74,11 +74,14 @@ namespace simplot {
     std::vector<Figure> figures;
     std::vector<Dataset> datasets; // datasets to be used inside figures
     std::vector<CoordSystem> coordSystems; // coordinate systems which belong to figures
-    std::vector<unsigned long> parentsCoordSystems; // which figure the coordinate system belongs to
+    // REMOVED 14.05.2016 std::vector<unsigned long> parentsCoordSystems; // which figure the coordinate system belongs to
     std::vector<Graph> graphs; // graphs which belong to coordinate systems
-    std::vector<unsigned long> parentsGraphs; // which coordinate system the graph belongs to
+    //REMOVED 14.05.2016 std::vector<unsigned long> parentsGraphs; // which coordinate system the graph belongs to
     
     CoordSystem * getCoordinateSystem(); // get a pointer to most recently created coordinate system
+    CoordSystem& currentCoordSystem(); // get a reference to currently active coordinate system
+    Figure& currentFigure(); // get a reference to currently active figure
+    
     int addGraph(Graph graph); // add a graph to the vector
     
     Settings& settings;

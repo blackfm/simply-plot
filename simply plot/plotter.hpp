@@ -32,7 +32,7 @@ namespace simplot {
     int runInstruction (const Path& path); // add a path element
     int runInstruction (const SetSize& setsize); // set plot's size
     int plotPath(const std::vector<Coordinate>& values); // create and add a path element to SVG
-    int finish(); // finalising the plot and saving it into the file
+    int saveFile(const std::string& filename); // finalising the plot and saving it into the file
   private:
     ticpp::Document svgPlot; // output SVG structure to be written in file
     ticpp::Element* svgRoot; // pointer to the SVG element, for convenience
